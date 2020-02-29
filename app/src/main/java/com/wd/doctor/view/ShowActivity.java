@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -26,7 +27,7 @@ public class ShowActivity extends BaseActivity implements IContract.IViewAvatar 
     SimpleDraweeView show_doctorimage;
     private String imagePic;
     Button bt_answer, bt_inquiry, bt_manager;
-
+    TextView zeng,doctoraddress,doctorzhi;
     @Override
     protected void initData() {
         IPresenter presenter = (IPresenter) p;
@@ -54,6 +55,9 @@ public class ShowActivity extends BaseActivity implements IContract.IViewAvatar 
         bt_answer = findViewById(R.id.bt_answer);
         bt_inquiry = findViewById(R.id.bt_inquiry);
         bt_manager = findViewById(R.id.bt_manager);
+        doctorzhi = findViewById(R.id.doctorzhi);
+        zeng = findViewById(R.id.zeng);
+        doctoraddress = findViewById(R.id.doctoraddress);
     }
 
     @Override
@@ -87,8 +91,9 @@ public class ShowActivity extends BaseActivity implements IContract.IViewAvatar 
     @Override
     public void avatarSuccess(AvatarBean avatarBean) {
         Log.i("aaa", "avatarSuccess: " + avatarBean);
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 2; i++) {
             imagePic = avatarBean.getResult().get(i).getImagePic();
+
         }
         show_doctorimage.setImageURI(imagePic);
     }

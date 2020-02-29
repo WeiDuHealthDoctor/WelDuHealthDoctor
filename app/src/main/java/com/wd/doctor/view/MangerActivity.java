@@ -67,6 +67,13 @@ public class MangerActivity extends BaseActivity {
 
             }
         });
+        myQuery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MangerActivity.this, DataActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
