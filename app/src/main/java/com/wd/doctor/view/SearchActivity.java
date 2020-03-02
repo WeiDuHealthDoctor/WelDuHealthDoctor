@@ -40,7 +40,6 @@ public class SearchActivity extends BaseActivity implements IContract.IViewInqui
     @Override
     protected void initData() {
         iPresenter = (IPresenter) p;
-
     }
 
     @Override

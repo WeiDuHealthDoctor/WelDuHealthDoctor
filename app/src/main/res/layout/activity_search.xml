@@ -6,43 +6,45 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".view.SearchActivity">
+
     <RelativeLayout
-        android:layout_marginTop="@dimen/dp_10"
-        android:layout_marginLeft="@dimen/dp_20"
-        android:layout_marginRight="@dimen/dp_20"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_20">
 
         <ImageView
             android:id="@+id/search_back"
-            android:layout_centerVertical="true"
-            android:src="@drawable/common_icon_back_black_n"
             android:layout_width="@dimen/dp_16"
-            android:layout_height="@dimen/dp_16"/>
+            android:layout_height="@dimen/dp_16"
+            android:layout_centerVertical="true"
+            android:src="@drawable/common_icon_back_black_n" />
 
         <EditText
             android:id="@+id/edit_search"
-            android:paddingLeft="@dimen/dp_10"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_25"
+            android:layout_marginLeft="@dimen/dp_7"
+            android:layout_marginRight="@dimen/dp_7"
+            android:layout_toRightOf="@+id/search_back"
             android:background="@drawable/serach_selector"
             android:hint="请输入病症名或标题关键字"
-            android:layout_width="@dimen/dp_260"
-            android:layout_toRightOf="@+id/search_back"
-            android:layout_marginRight="@dimen/dp_7"
-            android:layout_marginLeft="@dimen/dp_7"
-            android:layout_height="@dimen/dp_25"/>
+            android:paddingLeft="@dimen/dp_10" />
 
         <TextView
             android:id="@+id/text_search"
-            android:layout_alignParentRight="true"
-            android:textSize="@dimen/dp_14"
-            android:text="搜索"
             android:layout_width="@dimen/dp_30"
-            android:layout_height="@dimen/dp_22"/>
+            android:layout_height="@dimen/dp_22"
+            android:layout_alignParentRight="true"
+            android:text="搜索"
+            android:textSize="@dimen/dp_14" />
 
     </RelativeLayout>
 
+    
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchrec"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 </LinearLayout>
