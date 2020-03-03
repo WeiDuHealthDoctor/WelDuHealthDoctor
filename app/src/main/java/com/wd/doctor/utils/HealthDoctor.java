@@ -30,6 +30,11 @@ public interface HealthDoctor {
     @POST("doctor/v1/sendEmailCode")
     Observable<EmailCodeBean> getEmailCode(@Field("email") String email);
 
+    //登录
+    // @POST("doctor/v1/login")
+    //Observable<> getLogin();
+
+
     //申请入驻
     @POST("doctor/v1/applyJoin")
     Observable<SettleinBean> getSettlein(@Field("email") String email, @Field("code") String code

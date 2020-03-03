@@ -8,5 +8,5 @@ package com.wd.doctor.bean;
  * @CreateDate: 2020/2/19 11:25
  */
 public class LoginBean {
-
+       
 }

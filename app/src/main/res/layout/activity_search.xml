@@ -42,7 +42,7 @@
 
     </RelativeLayout>
 
-    
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchrec"
         android:layout_width="match_parent"

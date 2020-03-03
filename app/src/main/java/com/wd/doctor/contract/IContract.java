@@ -3,6 +3,7 @@ package com.wd.doctor.contract;
 import com.wd.doctor.bean.AvatarBean;
 import com.wd.doctor.bean.DepartmentBean;
 import com.wd.doctor.bean.InquireSickBean;
+import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.bean.PatientBean;
 import com.wd.doctor.bean.SettleinBean;
 import com.wd.doctor.bean.SickCircleBean;
@@ -75,4 +76,13 @@ public interface IContract {
         void InquiresSuccess(InquireSickBean inquireSickBean);
     }
 
+    //登录
+    interface IViewLogin {
+        void LoginSuccess(LoginBean loginBean);
+    }
+
+    //登录
+    interface IModelLogin {
+        void LoginsSuccess(LoginBean loginBean);
+    }
 }
