@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.DataActivity"></activity>
+        <activity android:name=".view.PictureActivity"></activity>
+        <activity android:name=".view.ChangeActivity" />
+        <activity android:name=".view.DataActivity" />
         <activity android:name=".view.MangerActivity" />
         <activity android:name=".view.SearchActivity" />
         <activity android:name=".view.SickDeatilActivity" />

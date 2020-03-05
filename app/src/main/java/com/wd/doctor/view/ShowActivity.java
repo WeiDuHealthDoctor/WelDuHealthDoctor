@@ -3,6 +3,7 @@ package com.wd.doctor.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,7 +28,8 @@ public class ShowActivity extends BaseActivity implements IContract.IViewAvatar 
     SimpleDraweeView show_doctorimage;
     private String imagePic;
     Button bt_answer, bt_inquiry, bt_manager;
-    TextView zeng,doctoraddress,doctorzhi;
+    TextView zeng, doctoraddress, doctorzhi;
+
     @Override
     protected void initData() {
         IPresenter presenter = (IPresenter) p;
@@ -43,7 +45,7 @@ public class ShowActivity extends BaseActivity implements IContract.IViewAvatar 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ShowActivity.this, MangerActivity.class);
-                 intent.putExtra("imagePic",imagePic);
+                intent.putExtra("imagePic", imagePic);
                 startActivity(intent);
             }
         });
@@ -91,10 +93,13 @@ public class ShowActivity extends BaseActivity implements IContract.IViewAvatar 
     @Override
     public void avatarSuccess(AvatarBean avatarBean) {
         Log.i("aaa", "avatarSuccess: " + avatarBean);
+
         for (int i = 0; i < 2; i++) {
             imagePic = avatarBean.getResult().get(i).getImagePic();
 
         }
+        SharedPreferences xx = getSharedPreferences("xx", MODE_PRIVATE);
+        imagePic = xx.getString("imagePic", "");
         show_doctorimage.setImageURI(imagePic);
     }
 }

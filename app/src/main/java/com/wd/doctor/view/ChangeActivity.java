@@ -1,7 +1,6 @@
 package com.wd.doctor.view;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -9,81 +8,45 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
+import com.luck.picture.lib.entity.LocalMedia;
 import com.wd.doctor.R;
 import com.wd.doctor.base.BaseActivity;
 import com.wd.doctor.base.BasePresenter;
 import com.wd.doctor.presenter.IPresenter;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MangerActivity extends BaseActivity {
+public class ChangeActivity extends BaseActivity {
 
 
-    @BindView(R.id.my_image)
-    SimpleDraweeView myImage;
-    @BindView(R.id.my_back)
-    ImageView myBack;
-    @BindView(R.id.my_message)
-    ImageView myMessage;
-    @BindView(R.id.my_query)
-    TextView myQuery;
-    @BindView(R.id.fang)
-    ImageView fang;
-    @BindView(R.id.my_history)
-    ImageView myHistory;
-    @BindView(R.id.text_history)
-    TextView textHistory;
-    @BindView(R.id.my_wallet)
-    ImageView myWallet;
-    @BindView(R.id.text_wallet)
-    TextView textWallet;
-    @BindView(R.id.my_suggest)
-    ImageView mySuggest;
-    @BindView(R.id.text_suggest)
-    TextView textSuggest;
-    @BindView(R.id.my_reply)
-    ImageView myReply;
-    @BindView(R.id.text_reply)
-    TextView textReply;
+    @BindView(R.id.image_cmera)
+    ImageView imageCmera;
+    @BindView(R.id.text_cmera)
+    TextView textCmera;
+    @BindView(R.id.xxz_image)
+    SimpleDraweeView xxzImage;
+    @BindView(R.id.according_image)
+    ImageView accordingImage;
+    @BindView(R.id.finishset)
+    Button finishset;
     private PopupWindow popupWindow;
-    private SharedPreferences xx;
+    private List<LocalMedia> images;
 
     @Override
     protected void initData() {
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        String imagePic = extras.getString("imagePic");
-        myImage.setImageURI(imagePic);
-    }
-
-    @Override
-    protected void initView() {
-        myBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        fang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        myQuery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MangerActivity.this, DataActivity.class);
-                startActivity(intent);
-            }
-        });
-        myImage.setOnClickListener(new View.OnClickListener() {
+        imageCmera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPopWindow();
@@ -91,9 +54,10 @@ public class MangerActivity extends BaseActivity {
         });
     }
 
+    //popuwindow
     private void showPopWindow() {
         //找到pop弹窗布局
-        final View view = LayoutInflater.from(MangerActivity.this).inflate(R.layout.my_pop, null);
+        final View view = LayoutInflater.from(ChangeActivity.this).inflate(R.layout.comera_photo, null);
         popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setContentView(view);
         //设置高度
@@ -103,19 +67,41 @@ public class MangerActivity extends BaseActivity {
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
         popupWindow.setOutsideTouchable(true);
         //activity的布局
-         View rootView = LayoutInflater.from(MangerActivity.this).inflate(R.layout.activity_show, null);
-        view.findViewById(R.id.bt_change).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(MangerActivity.this, ChangeActivity.class);
-//                        SharedPreferences.Editor edit = xx.edit();
-//                        edit.remove("imagePic");
-//                        edit.commit();
-                      popupWindow.dismiss();
-                        startActivity(intent);
-                    }
-                });
+        View rootView = LayoutInflater.from(ChangeActivity.this).inflate(R.layout.activity_change, null);
+        view.findViewById(R.id.bt_change).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //拍照
+                PictureSelector.create(ChangeActivity.this)
+                        .openCamera(PictureMimeType.ofImage())
+                        .forResult(PictureConfig.CHOOSE_REQUEST);
+                popupWindow.dismiss();
+            }
+        });
+
+        view.findViewById(R.id.bt_message).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PictureSelector.create(ChangeActivity.this)
+                        .openGallery(PictureMimeType.ofImage())
+                        .maxSelectNum(6)
+                        .minSelectNum(1)
+                        .imageSpanCount(4)
+                        .selectionMedia(images)// 是否传入已选图片 List<LocalMedia> list
+                        .selectionMode(PictureConfig.MULTIPLE)
+                        .forResult(PictureConfig.CHOOSE_REQUEST);
+                popupWindow.dismiss();
+            }
+        });
+
+        view.findViewById(R.id.bt_changeimage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChangeActivity.this, PictureActivity.class);
+                startActivity(intent);
+                popupWindow.dismiss();
+            }
+        });
 
         view.findViewById(R.id.bt_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +109,7 @@ public class MangerActivity extends BaseActivity {
                 popupWindow.dismiss();
             }
         });
+
         //popupWindow消失屏幕变为不透明
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
@@ -143,13 +130,18 @@ public class MangerActivity extends BaseActivity {
     }
 
     @Override
+    protected void initView() {
+
+    }
+
+    @Override
     protected BasePresenter providePresenter() {
         return new IPresenter();
     }
 
     @Override
     protected int provideLayoutIds() {
-        return R.layout.activity_manger;
+        return R.layout.activity_change;
     }
 
     @Override

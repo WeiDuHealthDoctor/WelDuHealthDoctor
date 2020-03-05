@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.ChangeActivity">
+    <TextView
+        android:layout_marginTop="@dimen/dp_70"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginBottom="@dimen/dp_70"
+        android:text="为您设置一张证件照吧"
+        android:textSize="@dimen/dp_16"
+        android:textColor="#3078ea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_30"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:background="@drawable/my_addresstwo"
+            android:layout_width="@dimen/dp_300"
+            android:layout_height="@dimen/dp_260">
+
+            <RelativeLayout
+                android:background="@drawable/my_addresstwo"
+                android:layout_width="@dimen/dp_300"
+                android:layout_height="@dimen/dp_260">
+
+                <ImageView
+                    android:id="@+id/image_cmera"
+                    android:src="@drawable/my_icon_camera_n"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dp_40"
+                    android:layout_marginBottom="@dimen/dp_30"
+                    android:layout_width="@dimen/dp_64"
+                    android:layout_height="@dimen/dp_64"/>
+
+                <TextView
+                    android:id="@+id/text_cmera"
+                    android:layout_below="@+id/image_cmera"
+                    android:text="自定义形象照"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_below="@+id/text_cmera"
+                    android:layout_centerHorizontal="true"
+                    android:text="让你的形象独一无二"
+                    android:textSize="@dimen/dp_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/xxz_image"
+                android:background="@drawable/my_addresstwo"
+                android:visibility="invisible"
+                android:layout_width="@dimen/dp_300"
+                android:layout_height="@dimen/dp_260"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/according_image"
+            android:src="@drawable/according_to_the_image"
+            android:background="@drawable/my_address"
+            android:layout_width="@dimen/dp_300"
+            android:layout_height="@dimen/dp_131"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginLeft="@dimen/dp_30">
+
+        <Button
+            android:id="@+id/finishset"
+            android:background="@drawable/request_selector"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp_40"
+            android:text="完成设置"
+            android:textSize="@dimen/dp_14"
+            android:textColor="#F7F0F0"
+            android:layout_width="@dimen/dp_360"
+            android:layout_height="@dimen/dp_40" />
+    </RelativeLayout>
+</LinearLayout>
