@@ -9,6 +9,7 @@ import com.wd.doctor.bean.SickCircleBean;
 import com.wd.doctor.contract.IContract;
 import com.wd.doctor.model.IModel;
 import com.wd.doctor.view.AnswerActivity;
+import com.wd.doctor.view.PictureActivity;
 import com.wd.doctor.view.SearchActivity;
 import com.wd.doctor.view.ShowActivity;
 import com.wd.doctor.view.SickDeatilActivity;
@@ -34,6 +35,16 @@ public class IPresenter extends BasePresenter {
             public void avatarsSuccess(AvatarBean avatarBean) {
                 ShowActivity showActivity = (ShowActivity) v;
                 showActivity.avatarSuccess(avatarBean);
+            }
+        });
+    } //查询系统形象照
+
+    public void getpictureAvatars() {
+        model.getAvatar(new IContract.IModelAvatar() {
+            @Override
+            public void avatarsSuccess(AvatarBean avatarBean) {
+                PictureActivity pictureActivity = (PictureActivity) v;
+                pictureActivity.avatarSuccess(avatarBean);
             }
         });
     }
